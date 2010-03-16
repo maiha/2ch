@@ -1,0 +1,23 @@
+<%# -*- coding:utf-8-unix -*- -%>
+
+<%- if @images -%>
+<%- if @cols.to_i > 0 -%>
+
+<table>
+<%- @images.in_groups_of(@cols).each do |images| -%>
+<tr>
+<%- images.each do |image| -%>
+  <td><%= thumbnail_link(image) if image %></td>
+<%- end -%>
+</tr>
+<%- end -%>
+</table>
+
+<%- else -%>
+
+<%- @images.each do |image| -%>
+  <%= thumbnail_link(image) if image %>
+<%- end -%>
+
+<%- end -%>
+<%- end -%>

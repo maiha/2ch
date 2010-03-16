@@ -1,0 +1,4 @@
+<div id="message" class="popup">
+<%= oneline_message(flash[:error], 'error')  ||
+    oneline_message(flash[:notice],'notice') %>
+</div>

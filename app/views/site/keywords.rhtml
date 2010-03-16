@@ -1,0 +1,45 @@
+<%- # -*- coding:utf-8-unix -*- -%>
+
+<div id="edit_keywords">
+
+
+<h2>キーワード設定</h2>
+<div class="margin20">
+  <table class="model">
+    <tr>
+      <th>名前</th>
+      <th>文字列</th>
+      <th>設定</th>
+      <th>NG</th>
+    </tr>
+    <%= collection_tr_for @keywords, %w(
+          name
+          keyword
+          positive_check_box
+          negative_check_box
+      ) %>
+   </table>
+</div>
+
+<h3>一括設定</h3>
+<div class="margin20">
+<dl>
+<dt>設定</dt>
+<dd>
+  <%= link_to_function "全設定", "$$('.positive_check_box input[type=checkbox]').each(function(e){e.checked = true});" %>
+  <%= link_to_function "全解除", "$$('.positive_check_box input[type=checkbox]').each(function(e){e.checked = false});" %>
+</dd>
+<dt>NG</dt>
+<dd>
+  <%= link_to_function "全設定", "$$('.negative_check_box input[type=checkbox]').each(function(e){e.checked = true});" %>
+  <%= link_to_function "全解除", "$$('.negative_check_box input[type=checkbox]').each(function(e){e.checked = false});" %>
+</dd>
+</dl>
+</div>
+
+<BR>
+<%= link_to_remote "保存", :submit=>"edit_keywords",
+       :url=>{:action=>"update_keywords", :id=>@site} %>
+<%= link_to "キャンセル", :action=>"list" %>
+
+</div>

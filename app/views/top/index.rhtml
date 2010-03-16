@@ -1,0 +1,65 @@
+<%# -*- coding:utf-8-unix -*- -%>
+
+<div>
+最終更新: <%=h images_last_modified_at %>
+</div>
+
+<div class="tag_cloud">
+<%- @clouded_tags.each do |keyword| -%>
+<%- name = "%s(%d)" % [keyword.name, keyword.image_count] -%>
+<%= link_to h(name), {:controller=>"image", :action=>"tag", :id=>keyword}, :style=>"font-size: #{keyword[:size]}px;", :class=>"tag" %>
+<%- end -%>
+</div>
+
+<div class="box-curve-bar-lb">
+<h2>
+  <span class="title">新着画像
+    <span class="nav"><%= link_to "一覧", :controller=>"image" %></span>
+  </span>
+</h2>
+</div>
+<%- @images = @recent_images -%>
+<%= render :partial=>"image/images" %>
+
+<div class="box-curve-bar-lb">
+<h2>
+  <span class="title">今日の人気画像
+    <span class="nav"><%= link_to "一覧", :controller=>"image", :action=>"popular", :id=>"day" %></span>
+  </span>
+</h2>
+</div>
+<%- @images = @popular_images -%>
+<%= render :partial=>"image/images" %>
+
+<div class="box-curve-bar-lb">
+<h2>
+  <span class="title">今週の人気画像
+    <span class="nav"><%= link_to "一覧", :controller=>"image", :action=>"popular", :id=>"week" %></span>
+  </span>
+</h2>
+</div>
+<%- @images = @weekly_images -%>
+<%= render :partial=>"image/images" %>
+
+<div class="box-curve-bar-lb">
+<h2>
+  <span class="title">殿堂入り画像
+    <span class="nav"><%= link_to "一覧", :controller=>"image", :action=>"ranking" %></span>
+  </span>
+</h2>
+</div>
+<%- @images = @scored_images -%>
+<%= render :partial=>"image/images" %>
+
+
+<div class="box-curve-bar-lb">
+<h2>
+  <span class="title">最近の人気スレ
+    <span class="nav"><%= link_to "一覧", :controller=>"board" %></span>
+  </span>
+</h2>
+</div>
+<%- @boards = @popular_boards -%>
+<%= render :partial=>"board/list" %>
+
+

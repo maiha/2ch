@@ -1,0 +1,23 @@
+<%- # -*- coding:utf-8-unix -*- -%>
+
+<h2>サーバ一覧</h2>
+
+<div class="margin20" id="sites-list">
+  <table class="model">
+    <tr>
+      <th>コード</th>
+      <th>名前</th>
+      <th>ホスト</th>
+      <th>修正</th>
+    </tr>
+    <%= collection_tr_for @sites, %w(
+          code
+          name
+          host
+          link_to_edit_keywords
+      ) %>
+  </table>
+</div>
+
+
+

@@ -1,0 +1,22 @@
+%table.simple
+  %tr
+    %th 画像へのリンク
+    %td= link_to_image(@image)
+  %tr
+    %th 元画像のURL
+    %td= @image.url
+  %tr
+    %th サイズ
+    %td= number_to_human_size @image.size
+  %tr
+    %th 取得日時
+    %td= @image.created_at.strftime("%Y-%m-%d %H:%M")
+  %tr
+    %th タグ
+    %td= link_to_tags(@tags)
+  %tr
+    %th 評価
+    %td= image_score_with_link(@image)
+  %tr
+    %th 既出
+    %td= image_history(@image)

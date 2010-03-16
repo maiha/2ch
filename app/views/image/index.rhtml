@@ -1,0 +1,15 @@
+<%# -*- coding:utf-8-unix -*- -%>
+
+<%- content_for(:image_links) do -%>
+<p class="clear">
+<table width="100%">
+<tr>
+  <td align=right><%= paginate @images, :prev=>"前", :next=>"次", :window=>6, :left=>3, :right=>3 %></td>
+</tr>
+</table>
+</p>
+<%- end -%>
+<%= yield :image_links %>
+<%= render :partial=>"images" %>
+<%= yield :image_links %>
+

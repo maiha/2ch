@@ -1,0 +1,22 @@
+<%- # -*- coding:utf-8-unix -*- -%>
+
+<div class="margin10" id="sites-list">
+  <table class="model">
+    <tr>
+      <th>No.</th>
+      <th>タイトル</th>
+      <th>画像数</th>
+      <th>レス数</th>
+      <th>勢い</th>
+      <th>コード</th>
+    </tr>
+    <%= collection_tr_for @boards, %w(
+          no
+          name
+          link_to_image
+          count_link
+          vigor
+          code
+      ) %>
+  </table>
+</div>

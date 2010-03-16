@@ -1,0 +1,37 @@
+
+srand(Time.now.to_i)
+
+class Error < Thor
+  desc "change 503 airi", "change 503 error content to airi"
+  def change(dst, src)
+    chdir do
+      src = find_source(src)
+      dst = File.basename(dst, ".*") + ".html"
+      FileUtils.rm(dst) if File.exist?(dst)
+      FileUtils.ln_s(src, dst)
+    end
+  end
+
+  desc "find NAME", "to test what file is match"
+  def find(src)
+    puts find_source(src)
+  end
+
+  private
+    def find_source(src)
+      dir_name = File.basename(src, ".*")
+
+      # first, find exact match like "src.html"
+      file = Dir.glob("**/#{dir_name}.html").shuffle.first
+
+      # second, find directory like "src/*.html"
+      file ||= Dir.glob("**/#{dir_name}/*.html").shuffle.first
+
+      file or raise "Cannot find #{src}"
+      return file
+    end
+
+    def chdir(&block)
+      Dir.chdir(File.dirname(__FILE__), &block)
+    end
+end

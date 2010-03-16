@@ -1,0 +1,8 @@
+// -*- coding:utf-8-unix -*-
+
+= render :partial=>"inspect"
+= render :partial=>"dirty" if @image.improper?
+%p= full_image_tag(@image)
+= render :arv=>"boards", :class=>"simple refered" unless @image.boards.blank?
+
+= javascript_tag "jQuery.get('/image/count/#{@image.id}?' + parseInt((new Date)/1000));"

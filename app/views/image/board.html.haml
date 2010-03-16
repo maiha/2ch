@@ -1,0 +1,9 @@
+// -*- coding:utf-8-unix -*-
+
+%h2= "「%s」スレ (%s件)" % [ h(@board.name), @limit]
+= render :partial=>"image/images"
+
+%br.clear
+
+= link_to_function "[持ち帰り用URL]", '$("#urls").toggle("slow");return false;'
+%pre#urls.none= render :partial=>"image/urls"

@@ -1,0 +1,53 @@
+require 'fileutils'
+require 'pathname'
+
+srand(Time.now.to_i)
+
+namespace "503" do
+  def chdir(&block)
+    Dir.chdir(File.dirname(__FILE__), &block)
+  end
+
+  def change(src, dst = "503.html")
+    FileUtils.rm(dst) if File.exist?(dst)
+    FileUtils.ln_s(src, dst)
+  end
+
+  def paths_for(dir, ext = '*.*')
+    chdir {
+      Dir.glob("#{dir}/**/#{ext}")
+    }
+  end
+
+  desc "no backend servers"
+  task :back do
+    change "back.html"
+  end
+
+  desc "server stopped"
+  task :stop do
+    change "stop.html"
+  end
+
+  desc "server ended"
+  task :end do
+    src = paths_for(:end, "*.html").shuffle.first
+    if src
+      change(src)
+      puts "Use #{src} as 503"
+    end
+  end
+
+  task :"end:ogsk" do
+    change "end/ogsk.html"
+  end
+
+  task :"end:maimi" do
+    change "end/maimi.html"
+  end
+
+  task :"end:ume" do
+    change "end/ume/278527.html"
+  end
+end
+

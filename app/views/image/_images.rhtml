@@ -1,0 +1,10 @@
+<%- register_sniper -%>
+<div class="images">
+<%- (@images||[]).each do |@image| -%>
+  <div id="image_<%= @image.id %>" class="image <%= css_image_class(@image) %>">
+    <div class="body">
+      <%= thumbnail_link(@image) %>
+    </div>
+  </div>
+<%- end -%>
+</div>

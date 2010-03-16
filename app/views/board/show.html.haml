@@ -1,0 +1,24 @@
+%table.simple
+  %tr
+    %th URL
+    %td= board_url
+  %tr
+    %th タイトル
+    %td= board_name
+  %tr
+    %th レス数
+    %td= board_count
+  %tr
+    %th 期間
+    %td= board_range
+  %tr
+    %th 状態
+    %td= board_status
+.thread
+  %hr/
+  - event = proc{|e,c| "if($.className.has(this,'on')){$('#thread').removeClass('#{c}');$('#{e}').removeClass('on');}else{$('#thread').addClass('#{c}');$('#{e}').addClass('on');};" }
+  %input#b1.on{:type => "button", :value => "画像レス", :onclick => event.call('#b1','image')}/
+  %input#b2{:type => "button", :value => "文章レス", :onclick => event.call('#b2','word')}/
+  %h3.thread_title=h @board.name
+  %dl#thread.image
+    = render_messages(@board)

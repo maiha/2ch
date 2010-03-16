@@ -1,0 +1,79 @@
+<!--    魔法画面　  -->
+<style type="text/css">
+#mab
+{
+  position : absolute;
+  top      : 50px;
+  left     : 100px;
+  z-index  : 11;
+}
+#mab1
+{
+  z-index  : 12;
+  position : absolute;
+  top      : 100px;
+  left     : 100px;
+  border   : 3px;
+}
+#mab2
+{
+  z-index  : 13;
+  position : absolute;
+  top      : 180px;
+  left     : 300px;
+  width    : 240px;
+  height   : 300px;
+  border   : 3px;
+}
+#mab3
+{
+  z-index        : 13;
+  position       : absolute;
+  top            : 500px;
+  left           : 120px;
+  width          : 646px;
+  border         : 0px;
+  font-size      : 46px;
+  color          : purple;
+  font-weight    : bold;
+  vertical-align : center;
+}
+#mab4
+{
+  white-space : nowrap;
+  text-align : center;
+}
+</style>
+
+<div id="mab" style="display: none;">
+<img id="mab1" src="/images/card/magic.jpg"/>
+<img id="mab2" src="/images/dustbox/card801.jpg" />
+<table id="mab3"><tbody><tr><td id="mab4">ぷぎゃー</td></tr></tbody></table>
+</div>
+
+<!--    魔法発動　  -->
+<script type="text/javascript">
+
+var magicSpell = function(imgsrc, message, options)
+{
+   $('#mab2').src=imgsrc;
+   $('#mab4').html(message);
+   setTimeout("$('#mab').show();",200)
+   setTimeout(function(){magicSpellDone(options)},options.msec || 2000)
+};
+var magicSpellDone = function(options)
+{
+   $('#mab').hide();
+//   if (options.onSpelled) options.onSpelled();
+};
+
+var magicPugar = function(image)
+{
+  magicSpell("/images/dustbox/card801.jpg", "プギャー");
+  setTimeout(function(){
+    image.Shake(2);
+    image.addClass('dirty');
+  });
+};
+
+</script>

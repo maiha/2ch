@@ -1,0 +1,17 @@
+<%# -*- coding:utf-8-unix -*- -%>
+
+<h2>タグ一覧</h2>
+<div class="margin20">
+  <table class="model">
+    <tr>
+      <th>名前</th>
+      <th>画像数</th>
+      <th><BR></th>
+    </tr>
+    <%= collection_tr_for @keywords, %w(
+          name
+          image_count
+          link_to_image
+      ) %>
+   </table>
+</div>

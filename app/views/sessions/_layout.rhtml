@@ -1,0 +1,23 @@
+<%# -*- coding:utf-8-unix -*- -%>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title><%=h @html_title || '画像保管庫@狼' %></title>
+    <%= stylesheet_link_tag 'header' %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= yield :header %>
+  </head>
+  <body>
+<table id="headtable" cellpadding="0" cellspacing="0">
+<tr>
+  <td>
+    <div id="logo"><h1><%= link_to "画像保管庫", :controller=>"top", :action=>"index" %></h1></div>
+  </td>
+  <td>
+    <%= render :partial=>"top/fixed_message" %>
+  </td>
+</tr>
+</table>
+<%= yield %>
+  </body>
+</html>

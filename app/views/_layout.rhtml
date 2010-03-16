@@ -1,0 +1,82 @@
+<%# -*- coding:utf-8-unix -*- -%>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title><%=h @html_title || '画像保管庫@狼' %></title>
+    <%= include_for "jquery13.js" -%>
+    <%= stylesheet_link_tag 'application' %>
+    <%= yield :header %>
+  </head>
+  <body>
+<table id="headtable" cellpadding="0" cellspacing="0">
+<tr>
+  <td class="logo-image">
+    <%= logo_image %>
+  </td>
+  <td>
+    <div id="logo"><h1><%= link_to "画像保管庫", :controller=>"top", :action=>"index" %></h1></div>
+  </td>
+  <td>
+    <div id="title"><%= vigor_board_name %></div>
+    <%= render :partial=>"top/fixed_message" %>
+  </td>
+  <td align="right">
+    <ul id="feature">
+    <%= tab_menu "画像", "image", "index", :action %>
+    <%= tab_menu "タグ", "tag",   "index", :action %>
+    <%= tab_menu "スレ", "board", "index", :action %>
+    <li><%= render :partial=>"image/sniper_disabled" if @sniper_comes %></li>
+    </ul>
+  </td>
+</tr>
+</table>
+
+<div id="bannersub">
+<table cellspacing="0">
+<tbody>
+<tr>
+<td width="50%" nowrap="nowrap" class="username">&nbsp;ようこそ <%=h login_name %>&nbsp;さん</td>
+<td width="1%"  nowrap="nowrap" class="gmenu"><%= link_to "ログイン", new_session_url %></td>
+<td width="1%"  nowrap="nowrap" class="gmenu">ヘルプの人</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="container">
+
+<table width="100%"><tr><td valign=top>
+<div id="main">
+
+<div id="message"><span class="notice">
+お知らせ：<%=h (n = Notice.current) ? n.body : '-' %>
+</span></div>
+<br>
+
+<%= yield %>
+</div>
+
+<div style="clear:both;"><br></div>
+<hr>
+このサイトへの質問、要望はこちらまで：2ch@wota.jp
+</td>
+<td valign=top align=left style="width:127px;padding-left:5px;">
+
+<!-- sidebar[obsoleted] -->
+
+</td></tr></table>
+
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7812126-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+  </body>
+</html>

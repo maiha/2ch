@@ -1,0 +1,28 @@
+<%# -*- coding:utf-8-unix -*- -%>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>マイ画像保管庫@狼</title>
+    <%= stylesheet_link_tag 's21g' %>
+    <%= stylesheet_link_tag 'pagination' %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= yield :header %>
+  </head>
+  <body>
+  <div id="base">
+    <div id="header">
+      <%= render :partial=>"top/fixed_message" %>
+    </div>
+    <div id="body">
+      <div id="main">
+          <%= yield %>
+      </div>
+      <div id="sub">
+        <div id="side">
+          <%= yield :side %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <body>
+</html>

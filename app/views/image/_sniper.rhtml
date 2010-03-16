@@ -1,0 +1,108 @@
+<%= include_for "jquery11.js" -%>
+<%= include_for "interface.js" -%>
+<%= render :partial=>"image/magic" %>
+
+<style type="text/css">
+.images .rockon
+{
+  background-color:#FFFFCC;
+}
+.images .rockon .body
+{
+  background-image: url("/images/emotions/ase2.png");
+  background-position: right top;
+}
+
+.images .target .body
+{
+  background-image: url("/images/emotions/ase2.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+#sniper
+{
+  cursor : move;
+}
+
+#sniper_help
+{
+  position         : absolute;
+  right            : 80px;
+  top              : 10px;
+  margin           : 10px;
+  padding          : 10px;
+  font-size        : 20px;
+  font-weight      : bold;
+  text-align       : center;
+  color            : black;
+  background-color : #FFFFCC;
+  border           : 2px solid #FFC6AD;
+}
+</style>
+
+
+<div id="sniper_help" style="display:none;">指定した画像を破壊することができます</div>
+<%= image_tag "dustbox/icon.jpg", :alt=>"プギャーマイマイ", :id=>"sniper", :class=>"sniper",
+  :onmouseover=>"$('#sniper_help').show();",
+  :onmouseout=>"$('#sniper_help').hide();" %>
+
+
+<script type="text/javascript">
+
+        $(document).ready(
+          function()
+          {
+            $('#sniper').Draggable({revert: true, fx: 300, ghosting: true, opacity: 0.4});
+            $('.images .image').Droppable(
+              {
+                accept      : 'sniper',
+                activeclass : 'target',
+                hoverclass  : 'rockon',
+                tolerance   : 'intersect',
+                onActivate  : activateDustbox,
+                onDrop      : addImageToDust
+              }
+            );
+          }
+        );
+
+
+var activateDustbox = function(dragged)
+{
+  // nop
+};
+var addImageToDust = function(dragged)
+{
+  //  alert(this.id + ' is killed by ' + dragged.id);
+  //  var image = $('#' + this.id + ' img');
+  var image = $('#' + this.id);
+
+  magicSpell("/images/dustbox/card801.jpg", "プギャーマイマイ", {msec:1300});
+  setTimeout(function(){
+    image.Shake(2);
+  }, 1300);
+
+
+  var url = '/image/bang/'+this.id;
+
+  setTimeout(function(){
+
+  $.ajax({
+    url: url,
+    type: 'POST',
+    dataType: 'script',
+    data: {},
+    timeout: 1000,
+    error: function(){
+        alert('狙撃失敗!');
+    },
+    success: function(xml){
+    },
+    beforeSend: function(xhr) {xhr.setRequestHeader("Accept", "text/javascript");}
+  });
+
+  }, 2000);
+
+};
+</script>
