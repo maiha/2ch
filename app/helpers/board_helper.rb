@@ -34,8 +34,8 @@ module BoardHelper
   end
 
   def board_range(board = @board)
-    time1 = @board.created_at.strftime("%Y-%m-%d %H:%M")
-    time2 = @board.written_at.strftime("%Y-%m-%d %H:%M")
+    time1 = @board.created_at.strftime("%Y-%m-%d %H:%M") rescue '???'
+    time2 = @board.written_at.strftime("%Y-%m-%d %H:%M") rescue '???'
     time2 = "" if board.position > 0
     "%s～%s" % [time1, time2]
   end
